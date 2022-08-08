@@ -14,9 +14,11 @@ type RequestParams struct {
 	Min    int    `json:"min"`
 	Max    int    `json:"max"`
 }
+
 type Data struct {
 	Data []int `json:"data"`
 }
+
 type Response struct {
 	Random         Data   `json:"random"`
 	CompletionTime string `json:"completionTime"`
@@ -44,9 +46,12 @@ func GetIntegers(client jsonrpc.RPCClient, n int, ctx context.Context) ([]int, e
 	err = response.GetObject(&responseData)
 	if err != nil {
 	}
+
 	var randomNumbers []int
+
 	for _, v := range responseData.Random.Data {
 		randomNumbers = append(randomNumbers, v)
 	}
+
 	return randomNumbers, nil
 }
